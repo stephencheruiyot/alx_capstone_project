@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Sign Up  <!-- Title block for the page -->
+{% endblock %}
+
+{% block content %}  <!-- Main content block -->
+  <form method="POST">  <!-- HTML form for user registration -->
+    <h3 align="center">Sign Up</h3>  <!-- Heading for the registration form -->
+    <div class="form-group">
+      <label for="email">Email Address</label>  <!-- Label for the email input field -->
+      <input
+        type="text"
+        id="email"
+        name="email"
+        class="form-control"
+        placeholder="Enter Email"
+      />
+      <label for="username">Username</label>  <!-- Label for the username input field -->
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        placeholder="Enter Username"
+      />
+      <label for="password1">Password</label>  <!-- Label for the first password input field -->
+      <input
+        type="password"
+        id="password1"
+        name="password1"
+        class="form-control"
+        placeholder="Enter Password"
+      />
+      <label for="password2">Password Again</label>  <!-- Label for the second password input field -->
+      <input
+        type="password"
+        id="password2"
+        name="password2"
+        class="form-control"
+        placeholder="Enter Password Again"
+      />
+      <br />
+      <div align="center">
+        <button class="btn btn-primary" type="submit">Sign Up</button>  <!-- Sign Up button -->
+      </div>
+    </div>
+  </form>
+{% endblock %}

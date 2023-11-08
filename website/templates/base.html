@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <!-- Box-icon -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='2-styles.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+    
+    <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+    ></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+    
+
+    <script
+    src="https://kit.fontawesome.com/999ca2bb93.js"
+    crossorigin="anonymous"
+  ></script>
+
+    <title>{% block title %}{% endblock %}</title>
+  
+</head>
+<body>
+<section class="home">  
+    <header>
+      <div class="nav container">
+        <a href="/" class="logo">Blog <span>space</span></a>
+     
+      
+      
+        <!-- Navigation Bar -->
+      
+        <nav class="navbar navbar-expand-lg">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/home">Home</a>
+  
+              <!-- Conditional Navigation Links (Based on User Authentication) -->
+              {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="/logout">Logout</a>
+              <a class="nav-item nav-link" href="/change_password">change password</a>
+              {% else %}
+              <a class="nav-item nav-link" href="/login">Login</a>
+              <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+      </div>
+     
+    </header>
+    
+  </section>
+<!--End of home section-->
+
+
+    <!--SEARCH SECTION-->
+    <section class="about container" id="about">
+        
+        
+         <div class="contentBx">
+            <h2 class="titleText">Catch up with the trending topics on:</h2>
+            <div class="searchbar">
+                    
+                <div class="searchclick">
+                   <form action="#">
+                       <input type="text" class="form-control" placeholder="search" id="searchInput">
+                   </form>
+                   <button class="btn">search</button>
+                       <div class="tagsec">
+                           <h3 class="popular">Popular Tags:</h3>
+                           <div class="tags">
+                               <a href="/">#Travel<span>,</span></a>
+                               <a href="/">#Sports<span>,</span></a>
+                               <a href="/">#Movies<span>,</span></a>
+                               <a href="/">#lifestyle<span>,</span></a>
+                               <a href="/">#Tech<span>,</span></a>
+                               <a href="/">#Food<span>,</span></a>
+                               
+                           </div>
+                       </div>
+                           
+                </div>
+           </div>  
+           
+          
+                
+        </div>
+        <!--MAIN CONTAINER FOR CONTENT-->
+        <div class = container>
+          {% block content %}
+    
+          {%endblock%}
+          </div>
+
+        
+    <!-- Flash Messages (Success and Error Notifications) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+       
+    </section>
+   
+    <!--FILTER POSTS-->
+    <div class="post-filter container">
+        <span class="filter-item active-filter" data-filter="all">All</span>
+        <span class="filter-item" data-filter="tech">Tech</span>
+        <span class="filter-item" data-filter="food">Food</span>
+        <span class="filter-item" data-filter="news">News</span>
+    </div>
+
+    <!--POSTS-->
+    <div class="post container">
+        <!-- Post 1 -->
+        <div class="post-box lyfestyle" id="Tech">
+            <img src="{{ url_for('static', filename='images/tech1.png') }}" alt="Your Image"> 
+            <h2 class="category">Travel</h2>
+            <a href="/" class="post-title">share your experiences of travelling around the world</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/tech1.png') }}" alt=""> 
+                <span class="profile-name">maryanne</span>
+            </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="post-box tech" id="Tech">
+            <img src="{{ url_for('static', filename='images/tech.jpg') }}" alt="Your Image">
+            <h2 class="category">Tech</h2>
+            <a href="/" class="post-title">How AI has revolutionized the tech industry</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi2.jpg') }}" alt=""> 
+                <span class="profile-name">By Jimmy Gathu</span>
+            </div>
+        </div>
+        <!-- Post 3 -->
+        <div class="post-box tech" id="Tech">
+            <img src="{{ url_for('static', filename='images/tech2.jpg') }}" alt="Your Image">
+            <h2 class="category">Tech</h2>
+            <a href="/" class="post-title">Tech-The best career choice</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi3.jpg') }}" alt=""> 
+                <span class="profile-name">By Cole Baidoo</span>
+            </div>
+        </div>
+        <!-- Post 4 -->
+        <div class="post-box tech" id="Tech">
+            <img src="{{ url_for('static', filename='images/laptop.jpg') }}" alt="Your Image">
+            <h2 class="category">Tech</h2>
+            <a href="/#" class="post-title">AI- A revolution in tech</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/test4.jpg') }}" alt=""> 
+                <span class="profile-name">By Mike Maasai</span>
+            </div>
+        </div>
+        <!-- Post 5 -->
+        <div class="post-box tech" id="Tech">
+          <img src="{{ url_for('static', filename='images/notepadlap.jpg') }}" alt="Your Image">
+            <h2 class="category">tech</h2>
+            <a href="/" class="post-title">How i switched careers by learning to code online</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi5.jpg') }}" alt=""> 
+                <span class="profile-name">By collins Kiptoo</span>
+            </div>
+        </div>
+        <!-- Post 6 -->
+        <div class="post-box news" id="News">
+          <img src="{{ url_for('static', filename='images/horizon.png') }}" alt="Your Image" class="post-img">
+            <h2 class="category">News</h2>
+            <a href="/" class="post-title">China strides to world domination</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi6.jpg') }}" alt=""> 
+                <span class="profile-name">By Jared Kinuthia</span>
+            </div>
+        </div>
+        <!-- Post 7 -->
+        <div class="post-box tech"id="Tech">
+            <img src="{{ url_for('static', filename='images/ipods.jpg') }}" alt="Your Image"> 
+            <h2 class="category">Tech</h2>
+            <a href="/" class="post-title">How google spies on you everyday</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi3.jpg') }}" alt=""> 
+                <span class="profile-name">By peter Bett</span>
+            </div>
+        </div>
+        <!-- Post 8 -->
+        <div class="post-box news"id="News">
+          <img src="{{ url_for('static', filename='images/lake.jpg') }}" alt="Your Image" class="post-img">
+            <h2 class="category">News</h2>
+            <a href="/" class="post-title">Kenya leads in technological advancement in East Africa</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+              <img src="{{ url_for('static', filename='images/testi2.jpg') }}" alt="Your Image"> 
+                <span class="profile-name">By Moses Brad</span>
+            </div>
+        </div>
+        <!-- Post 9 -->
+        <div class="post-box food"id="Food">
+            <img src="{{ url_for('static', filename='images/food.jpg') }}" alt="">
+            <h2 class="category">Food</h2>
+            <a href="/" class="post-title">The best foods to stay younger and helthier</a>
+            <span class="post-date">12 Feb 2022</span>
+            <p class="post-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur, similique, rerum excepturi harum, vitae facilis corrupti vel modi debitis est perferendis aut quasi ea unde repudiandae iste architecto. Corporis, voluptates.</p>
+            <div class="profile-img">
+                
+                <img src="{{ url_for('static', filename="images/testi.jpg") }}" alt="">
+
+                <span class="profile-name">By malik sigh</span>
+            </div>
+        </div>
+    </div>
+
+    <!--FOOTER-->
+    <footer>
+        <div class="footer-container">
+            <div class="sec aboutus">
+                <h2>About Us</h2>
+                <p>I am an enthusiastic bloger interested in various fields such as technology, coding, health and fitness, nature and wildlife, travelling, good food, and biking including many more fields.
+                    The main aim of this blog is to inform, educate, entertain, and showcase my passions in various fields as well as to connect with people with the same interests.
+                </p>
+                <ul class="sci">
+                    <li><a href="#"><i class="bx bxl-facebook"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-twitter"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <!--QUICK LINKS-->
+            <div class="sec quicklinks">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                </ul>
+            </div>
+            <!--CONTACT INFORMATION-->
+            <div class="sec contactBx">
+                <h2>Contact Info</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class='bx bxs-map'></i></span>
+                        <span>Nakuru <br> Nairobi<br> Kenya</span>
+                    </li>
+                    <li>
+                        <span><i class='bx bx-envelope' ></i></span>
+                        <p><a href="mailto:stephencheruiyot58@gmail.com">stephencheruiyot58@gmail.com</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" 
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    </script>
+    
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+
+   <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='main.js')}}"
+    ></script>
+
+   
+    <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+    ></script>
+
+    
+    
+</body>
+</html>

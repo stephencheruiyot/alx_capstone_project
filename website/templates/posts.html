@@ -1,0 +1,17 @@
+{% extends "posts_div.html" %}  <!-- Extends another template named "posts_div.html" -->
+
+{% block title %}
+  {{username}}'s Posts  <!-- Sets the page title to the username followed by 's Posts -->
+{% endblock %}
+
+{% block header %}
+  {{username}}'s posts  <!-- Displays the header with the username followed by 's posts -->
+{% endblock %}
+
+{% block footer %}  <!-- The footer block for the page -->
+  <div align="center">
+    <a href="/home">
+      <button type="button" class="btn btn-primary btn-lg">Back</button>
+    </a>  <!-- Creates a "Back" button that links to the home page -->
+  </div>
+{% endblock %}

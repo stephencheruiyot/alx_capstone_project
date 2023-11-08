@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- This template extends the "base.html" template. -->
+
+{% block title %}
+  Home
+<!-- Sets the page title to "Home". -->
+{% endblock %}
+
+{% block content %}
+<!-- Main content block for the page. -->
+  <h1 align="center">Make a Post</h1>
+  <!-- Heading for creating a new post. -->
+
+  <form method="POST">
+  <!-- HTML form for creating a new post. -->
+    <textarea name="text" id="text" class="form-control"></textarea>
+    <!-- Text area for entering the post content. -->
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-lg btn-primary">Post</button>
+    </div>
+  </form>
+
+  <br />
+  <div align="center">
+    <a href="/home">
+      <button type="button" class="btn btn-lg btn-secondary">Back</button>
+    </a>
+  </div>
+  <!-- "Back" button to return to the home page. -->
+
+{% endblock %}
+<!-- End of the main content block. -->
